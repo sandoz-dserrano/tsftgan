@@ -1,0 +1,53 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "pip==19.3.1",
+    "torchsummary==1.5.1",
+    "torch==1.13.1",
+    "pillow==9.4.0",
+    "einops==0.6.0",
+    "torchvision==0.14.1",
+    "matplotlib==3.7.1",
+    "tsaug==0.2.1",
+    "tabulate==0.9.0",
+    "imageio==2.26.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tstgan"
+authors = [
+    { name="Diego Serrano", email="diego.serrano.venturini@gmail.com" },
+]
+description = "Time Series Transformer Generative Adversarial Network"
+readme = "README.md"
+requires-python = "==3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies", "version"]
+
+[project.scripts]
+evolution = "tstgan.__main__:main_routine"
+
+[tool.setuptools.packages.find]
+where = ["src"]  # list of folders that contain the packages (["."] by default)
+include = ["tstgan*"]  # package names should match these glob patterns (["*"] by default)
+exclude = ["tstgan.tests*"]  # exclude packages matching these glob patterns (empty by default)
+namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+version = {attr = "tstgan.__version__"}
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s : %(name)s : %(levelname)s : %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+
+
+
